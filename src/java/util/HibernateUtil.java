@@ -18,6 +18,7 @@ public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
 
+
     static {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml) 
