@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="diarioProfessor" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e7b942c-8510-423c-9543-105907f059ae">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PAR_codTurma" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     aluno.`matricula` AS aluno_matricula,
+     aluno.`nome` AS aluno_nome,
+     turma.`codTurma` AS turma_codTurma,
+     turma.`semestre` AS turma_semestre,
+     turma.`ano` AS turma_ano,
+     professor.`nome` AS professor_nome,
+     disciplina.`nome` AS disciplina_nome
+FROM
+     `aluno` aluno INNER JOIN `avaliacao` avaliacao ON aluno.`matricula` = avaliacao.`matriculaAluno`
+     INNER JOIN `turma` turma ON avaliacao.`codTurma` = turma.`codTurma`
+     INNER JOIN `professor` professor ON turma.`matriculaProfessor` = professor.`matricula`
+     INNER JOIN `disciplina` disciplina ON turma.`codDisciplina` = disciplina.`codDisciplina`
+WHERE turma.codTurma = $P{PAR_codTurma}]]>
+	</queryString>
+	<field name="aluno_matricula" class="java.lang.Integer"/>
+	<field name="aluno_nome" class="java.lang.String"/>
+	<field name="turma_codTurma" class="java.lang.Integer"/>
+	<field name="turma_semestre" class="java.lang.Integer"/>
+	<field name="turma_ano" class="java.lang.Integer"/>
+	<field name="professor_nome" class="java.lang.String"/>
+	<field name="disciplina_nome" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="60b6e3dc-eca8-413e-a46a-62156a125f52" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="dbd76801-1a0b-4c05-89b4-bcd0bdff4e86" x="20" y="12" width="316" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Diário de Classe]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="0ac986e1-4e51-4f2b-869b-032cca590574" x="21" y="66" width="198" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Turma: "+$F{turma_codTurma}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="fda234d1-57b3-4a8f-a4e9-a9a011ab3112" x="225" y="66" width="194" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Semestre: "+$F{turma_semestre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="7cda5fca-ed9b-4ed6-a8f9-a603f618ae47" x="425" y="67" width="141" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Ano: "+$F{turma_ano}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="a8479798-9a90-4b61-abc3-a356564d2ee0" x="384" y="14" width="181" height="20" forecolor="#FFFFFF"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Professor: "+$F{professor_nome}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="3f3dc9c2-3ee4-4ebd-8204-b92693f8e732" x="384" y="41" width="181" height="20" forecolor="#FFFFFF"/>
+					<textElement/>
+					<textFieldExpression><![CDATA["Disciplina: "+$F{disciplina_nome}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="725b3cbc-a654-4d5f-8ee7-ac83dd38ac95" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="a1a94fc1-795e-4496-90f3-023d604eb2e6" mode="Opaque" x="0" y="0" width="198" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matricula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cb902777-0a6e-4dfc-b3e3-6a5391d9853d" mode="Opaque" x="198" y="0" width="347" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="b6514b36-d51a-4fcb-b13a-fe60a0c27746" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c300970f-4e21-474b-95f8-b9ea8f6d9019" x="11" y="0" width="198" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_matricula}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="1c7106de-ccc7-44d8-b409-8eb6bd737af3" x="210" y="0" width="335" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="0779bc7b-507c-427d-a71e-a9dff0b11ec0" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="e724641b-d581-4395-a5e0-9a9c162aa61c" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="0aa56550-fe93-4f62-8537-b81d7abd8c05" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="alunosAnoSemestre" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4407a8b3-9c93-48be-b305-3328afbab077">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PAR_ano" class="java.lang.Integer"/>
+	<parameter name="PAR_semestre" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     aluno.`matricula` AS matricula,
+     aluno.`nome` AS nome,
+     curso.`nome` AS curso_nome
+FROM
+     `curso` curso INNER JOIN `aluno` aluno ON curso.`codCurso` = aluno.`codCurso`
+WHERE
+     aluno.status = "matriculado" and
+     aluno.anoIngresso = $P{PAR_ano} and
+     aluno.semestreIngresso = $P{PAR_semestre}
+ORDER BY aluno.codCurso]]>
+	</queryString>
+	<field name="matricula" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="curso_nome" class="java.lang.String"/>
+	<group name="curso_nome">
+		<groupExpression><![CDATA[$F{curso_nome}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement uuid="6c412548-fab5-4a4a-a78b-bf2324d4115c" mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Curso:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="42213183-b8df-48f1-b1da-a50e4161d2bb" mode="Opaque" x="52" y="0" width="502" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{curso_nome}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="e09bc7b5-11fc-4704-ad97-800880046287" x="-20" y="32" width="595" height="1" forecolor="#666666"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="3d0cc680-462d-4ead-9812-50183ab28dca" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="0725d8f2-996a-429d-8706-fca17a75cd3a" x="21" y="20" width="534" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Alunos Matriculados ]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="c25223b5-b9b3-4c0c-8c68-c5b05668cfc9" x="293" y="69" width="261" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{PAR_ano}+" / "+$P{PAR_semestre}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="131d3cbb-258e-4359-a80b-5b6415ca1d59" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="bdfbe79b-b4a4-42f6-97f4-b4aeb161507c" mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matricula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="64285212-b15a-4cc2-b996-48d8ffac5420" mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="03245459-c81b-4e97-a691-720146e48c45" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="7c29eeeb-9a6c-4716-99f5-d4af0045701c" x="0" y="0" width="277" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matricula}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="e7024efe-9354-4b92-96de-02962cd605b7" x="277" y="0" width="277" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="343f9020-da69-4ff5-9082-80183d73b07d" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="57f75e17-fee7-4fa6-a003-fe8d5603776d" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="dd0fa5c9-3e2a-4ca2-b254-38fc22971a64" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
