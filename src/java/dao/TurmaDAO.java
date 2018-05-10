@@ -14,6 +14,7 @@ public class TurmaDAO {
         Transaction transaction = session.beginTransaction();
         session.save(turma);
         transaction.commit();
+        session.close();
     }
 
     public static void alterar(Turma turma) throws ClassNotFoundException, SQLException {
@@ -21,6 +22,7 @@ public class TurmaDAO {
         Transaction transaction = session.beginTransaction();
         session.update(turma);
         transaction.commit();
+        session.close();
     }
 
     public static void excluir(Turma turma) throws ClassNotFoundException, SQLException {
@@ -28,12 +30,14 @@ public class TurmaDAO {
         Transaction transaction = session.beginTransaction();
         session.delete(turma);
         transaction.commit();
+        session.close();
     }
 
     public static Turma obterTurma(int codTurma) throws ClassNotFoundException, SQLException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Turma turma = (Turma) session.load(Turma.class, codTurma);
+        session.close();
         return turma;
     }
 
@@ -42,6 +46,7 @@ public class TurmaDAO {
         session.beginTransaction();
         //List<Turma> turmas = session.createCriteria(Turma.class).list();
         List<Turma> turmas = session.createQuery("from Turma").list();
+        session.close();
         return turmas;
     }
 }
