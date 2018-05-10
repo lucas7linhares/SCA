@@ -15,6 +15,7 @@ public class HorarioDAO {
         Transaction transaction = session.beginTransaction();
         session.save(horario);
         transaction.commit();
+        session.close();
     }
 
     public static void excluirHorario(Horario horario) throws SQLException, ClassNotFoundException {
@@ -22,12 +23,14 @@ public class HorarioDAO {
         Transaction transaction = session.beginTransaction();
         session.delete(horario);
         transaction.commit();
+        session.close();
     }
 
     public static List<Horario> obterHorarios() throws ClassNotFoundException, SQLException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         List<Horario> horarios = session.createCriteria(Professor.class).list();
+        session.close();
         return horarios;
     }
     
@@ -35,6 +38,7 @@ public class HorarioDAO {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         List<Horario> horarios = session.createQuery("from Horario where codTurma="+codTurma).list();
+        session.close();
         return horarios;
     }
 
@@ -43,5 +47,6 @@ public class HorarioDAO {
         Transaction transaction = session.beginTransaction();
         session.update(horario);
         transaction.commit();
+        session.close();
     }
 }
