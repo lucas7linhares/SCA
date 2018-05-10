@@ -15,6 +15,7 @@ public class AvaliacaoDao {
         Transaction transaction = session.beginTransaction();
         session.save(avaliacao);
         transaction.commit();
+        session.close();
     }
 
     public static void editarAvaliacao(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
@@ -22,6 +23,7 @@ public class AvaliacaoDao {
         Transaction transaction = session.beginTransaction();
         session.update(avaliacao);
         transaction.commit();
+        session.close();
     }
 
     public static void excluirAvaliacao(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
@@ -29,19 +31,23 @@ public class AvaliacaoDao {
         Transaction transaction = session.beginTransaction();
         session.delete(avaliacao);
         transaction.commit();
+        session.close();
     }
 
     public static List<Avaliacao> obterAvaliacoesPorAluno(int matricula) throws ClassNotFoundException, SQLException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         List<Avaliacao> avaliacoes = session.createQuery("from Avaliacao where matriculaAluno=" + matricula).list();
+        session.close();
         return avaliacoes;
+        
     }
 
     public static List<Avaliacao> obterAvaliacoesPorTurma(int codTurma) throws ClassNotFoundException, SQLException {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         List<Avaliacao> avaliacoes = session.createQuery("from Avaliacao where codTurma=" + codTurma).list();
+        session.close();
         return avaliacoes;
     }
 
@@ -49,6 +55,7 @@ public class AvaliacaoDao {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         Avaliacao avaliacao = (Avaliacao) session.load(Avaliacao.class, avaliacaoId);
+        session.close();
         return avaliacao;
     }
 }
