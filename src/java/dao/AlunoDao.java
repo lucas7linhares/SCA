@@ -22,6 +22,7 @@ public class AlunoDao {
         session.beginTransaction();
         session.clear();
         List<Aluno> alunos = session.createCriteria(Aluno.class).list();
+        session.close();
         return alunos;
     }
     
@@ -31,6 +32,7 @@ public class AlunoDao {
         session.clear();
         List<Aluno> alunos = session.createQuery(
                 "from Aluno where nome like'%"+nome+"%'").list();
+        session.close();
         return alunos;
     }
     
@@ -39,7 +41,7 @@ public class AlunoDao {
         session.beginTransaction();
         session.clear();
         Aluno aluno = (Aluno) session.load(Aluno.class, matricula);
-        
+        session.close();
         return aluno;
     }
     
@@ -49,6 +51,7 @@ public class AlunoDao {
         session.clear();
         session.save(aluno);
         transaction.commit();
+        session.close();
     }
     
     public static void editarAluno(Aluno aluno) throws SQLException, ClassNotFoundException{
@@ -57,6 +60,7 @@ public class AlunoDao {
         session.clear();
         session.update(aluno);
         transaction.commit();
+        session.close();
     }
     
     public static void excluirAluno(Aluno aluno) throws SQLException, ClassNotFoundException{
@@ -65,6 +69,7 @@ public class AlunoDao {
         session.clear();
         session.delete(aluno);
         transaction.commit();
+        session.close();
     }
     
 }
