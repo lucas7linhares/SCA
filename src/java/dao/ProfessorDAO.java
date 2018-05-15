@@ -4,12 +4,7 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import model.Professor;
 import org.hibernate.Session;
@@ -21,55 +16,130 @@ import util.HibernateUtil;
  * @author Heleno
  */
 public class ProfessorDAO {
-    public static void gravarProfessor(Professor professor) throws SQLException, ClassNotFoundException{
+
+    public static void gravarProfessor(Professor professor) throws SQLException, ClassNotFoundException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(professor);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.save(professor);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
-    
-     public static void excluirProfessor(Professor professor) throws SQLException, ClassNotFoundException{
+
+    public static void excluirProfessor(Professor professor) throws SQLException, ClassNotFoundException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(professor);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.delete(professor);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
-    
-    public static List<Professor> obterProfessores() throws ClassNotFoundException, SQLException{
+
+    public static List<Professor> obterProfessores() throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        List<Professor> professores = session.createCriteria(Professor.class).list();
-        session.close();
-        return professores;
-        
+        List<Professor> professores = null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            professores = session.createCriteria(Professor.class).list();
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return professores;
+        }
     }
-    
-    public static List<Professor> obterProfessoresPorNome(String nomeProfessor) throws ClassNotFoundException, SQLException{
+
+    public static List<Professor> obterProfessoresPorNome(String nomeProfessor) throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        List<Professor> professores = session.createQuery("from Professor where nome like'%"+nomeProfessor+"%'").list();
-        session.close();
-        return professores;
+        List<Professor> professores = null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            professores = session.createQuery("from Professor where nome like'%" + nomeProfessor + "%'").list();
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return professores;
+        }
     }
-    
-    public static Professor obterProfessor(int matricula) throws ClassNotFoundException, SQLException{
+
+    public static Professor obterProfessor(int matricula) throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        Professor professor = (Professor) session.load(Professor.class, matricula);
-        session.close();
-        return professor;
+        Professor professor = null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            professor = (Professor) session.load(Professor.class, matricula);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return professor;
+        }
     }
-    
-     public static void editarProfessor(Professor professor) throws SQLException, ClassNotFoundException{
+
+    public static void editarProfessor(Professor professor) throws SQLException, ClassNotFoundException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(professor);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.update(professor);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
-    
-    
-    
 }

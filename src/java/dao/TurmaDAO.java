@@ -10,27 +10,63 @@ import org.hibernate.Transaction;
 public class TurmaDAO {
 
     public static void gravar(Turma turma) throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(turma);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.save(turma);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public static void alterar(Turma turma) throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(turma);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.update(turma);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public static void excluir(Turma turma) throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(turma);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.delete(turma);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     public static Turma obterTurma(int codTurma) throws ClassNotFoundException, SQLException {
@@ -42,11 +78,24 @@ public class TurmaDAO {
     }
 
     public static List<Turma> obterTurmas() throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        //List<Turma> turmas = session.createCriteria(Turma.class).list();
-        List<Turma> turmas = session.createQuery("from Turma").list();
-        session.close();
-        return turmas;
+        List<Turma> turmas = null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            turmas = session.createQuery("from Turma").list();
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return turmas;
+        }
     }
 }

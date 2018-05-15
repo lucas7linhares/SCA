@@ -4,11 +4,7 @@
  */
 package dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import model.Curso;
 import org.hibernate.Session;
@@ -21,44 +17,106 @@ import util.HibernateUtil;
  */
 public class CursoDAO {
     public static void gravarCurso(Curso curso) throws SQLException, ClassNotFoundException{
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(curso);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.save(curso);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
     public static void editarCurso(Curso curso) throws SQLException, ClassNotFoundException{
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(curso);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.update(curso);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
     public static void excluirCurso(Curso curso) throws SQLException, ClassNotFoundException{
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(curso);
-        transaction.commit();
-        session.close();
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            session.delete(curso);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
     
-    public static List<Curso> obterCursos() throws ClassNotFoundException, SQLException{
+    public static List<Curso> obterCursos() throws ClassNotFoundException, SQLException{ 
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        List<Curso> cursos = session.createCriteria(Curso.class).list();
-        session.clear();
-        session.close();
-        return cursos;
+        List<Curso> cursos = null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            cursos = session.createCriteria(Curso.class).list();
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return cursos;
+        }
     }
     
     public static Curso obterCurso(int codCurso) throws ClassNotFoundException, SQLException{
+        Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        Curso curso = (Curso) session.load(Curso.class, codCurso);
-        session.clear();
-        session.close();
-        return curso;
+        Curso curso = null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            curso = (Curso) session.load(Curso.class, codCurso);
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return curso;
+        }
     }
 }
