@@ -11,7 +11,7 @@ import util.HibernateUtil;
 public class AvaliacaoDao {
 
     public static void gravarAvaliacao(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(avaliacao);
         transaction.commit();
@@ -19,7 +19,7 @@ public class AvaliacaoDao {
     }
 
     public static void editarAvaliacao(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(avaliacao);
         transaction.commit();
@@ -27,7 +27,7 @@ public class AvaliacaoDao {
     }
 
     public static void excluirAvaliacao(Avaliacao avaliacao) throws SQLException, ClassNotFoundException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(avaliacao);
         transaction.commit();
@@ -35,7 +35,7 @@ public class AvaliacaoDao {
     }
 
     public static List<Avaliacao> obterAvaliacoesPorAluno(int matricula) throws ClassNotFoundException, SQLException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Avaliacao> avaliacoes = session.createQuery("from Avaliacao where matriculaAluno=" + matricula).list();
         session.close();
@@ -44,7 +44,7 @@ public class AvaliacaoDao {
     }
 
     public static List<Avaliacao> obterAvaliacoesPorTurma(int codTurma) throws ClassNotFoundException, SQLException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Avaliacao> avaliacoes = session.createQuery("from Avaliacao where codTurma=" + codTurma).list();
         session.close();
@@ -52,7 +52,7 @@ public class AvaliacaoDao {
     }
 
     public static Avaliacao obterAvaliacao(AvaliacaoId avaliacaoId) throws SQLException, ClassNotFoundException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Avaliacao avaliacao = (Avaliacao) session.load(Avaliacao.class, avaliacaoId);
         session.close();

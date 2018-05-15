@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 public class TurmaDAO {
 
     public static void gravar(Turma turma) throws ClassNotFoundException, SQLException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(turma);
         transaction.commit();
@@ -18,7 +18,7 @@ public class TurmaDAO {
     }
 
     public static void alterar(Turma turma) throws ClassNotFoundException, SQLException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(turma);
         transaction.commit();
@@ -26,7 +26,7 @@ public class TurmaDAO {
     }
 
     public static void excluir(Turma turma) throws ClassNotFoundException, SQLException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(turma);
         transaction.commit();
@@ -34,7 +34,7 @@ public class TurmaDAO {
     }
 
     public static Turma obterTurma(int codTurma) throws ClassNotFoundException, SQLException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Turma turma = (Turma) session.load(Turma.class, codTurma);
         session.close();
@@ -42,7 +42,7 @@ public class TurmaDAO {
     }
 
     public static List<Turma> obterTurmas() throws ClassNotFoundException, SQLException {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         //List<Turma> turmas = session.createCriteria(Turma.class).list();
         List<Turma> turmas = session.createQuery("from Turma").list();

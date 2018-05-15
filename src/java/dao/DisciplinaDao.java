@@ -21,7 +21,7 @@ import util.HibernateUtil;
  */
 public class DisciplinaDao {
     public static List<Disciplina> obterDisciplinas() throws ClassNotFoundException, SQLException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Disciplina> disciplinas = session.createCriteria(Disciplina.class).list();
         session.close();
@@ -29,7 +29,7 @@ public class DisciplinaDao {
     }
     
     public static List<Disciplina> obterDisciplinasPorNome(String nome) throws ClassNotFoundException, SQLException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Disciplina> disciplinas = session.createQuery("from Disciplina where nome like'%"+nome+"%'").list();
         session.close();
@@ -37,7 +37,7 @@ public class DisciplinaDao {
     }
     
     public static List<Disciplina> obterDisciplinasPorCursoENome(int codCurso, String nome) throws ClassNotFoundException, SQLException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Disciplina> disciplinas = session.createQuery("from Disciplina where nome like'%"+nome+"%' and codCurso="+codCurso).list();
         session.close();
@@ -45,7 +45,7 @@ public class DisciplinaDao {
     }
     
     public static List<Disciplina> obterDisciplinasPorCurso(int codCurso) throws ClassNotFoundException, SQLException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         List<Disciplina> disciplinas = session.createQuery("from Disciplina where codCurso="+codCurso).list();
         session.close();
@@ -53,7 +53,7 @@ public class DisciplinaDao {
     }
     
     public static Disciplina obterDisciplina(int codDisciplina) throws ClassNotFoundException, SQLException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Disciplina disciplina = (Disciplina) session.load(Disciplina.class, codDisciplina);
         session.close();
@@ -61,7 +61,7 @@ public class DisciplinaDao {
     }
     
     public static void gravarDisciplina(Disciplina disciplina) throws SQLException, ClassNotFoundException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(disciplina);
         transaction.commit();
@@ -69,7 +69,7 @@ public class DisciplinaDao {
     }
     
     public static void editarDisciplina(Disciplina disciplina) throws SQLException, ClassNotFoundException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(disciplina);
         transaction.commit();
@@ -77,7 +77,7 @@ public class DisciplinaDao {
     }
     
     public static void excluirDisciplina(Disciplina disciplina) throws SQLException, ClassNotFoundException{
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(disciplina);
         transaction.commit();
