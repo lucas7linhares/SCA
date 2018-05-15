@@ -54,7 +54,7 @@
                 </td>
                 
                 <td>
-                    <form action="manterCursoController?acao=prepararOperacao&operacao=incluir" method="post">
+                    <form action="ManterCursoController?acao=prepararOperacao&operacao=incluir" method="post">
                         <input type="submit" id="incluiNovo" value="Incluir Novo"/>
                     </form>
                 </td>
