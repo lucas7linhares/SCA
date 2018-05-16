@@ -85,7 +85,7 @@ public class TurmaDAO {
         try {
             Transaction transaction = session.beginTransaction();
             tx = session.getTransaction();
-            turmas = session.createQuery("from turma").list();
+            turmas = session.createCriteria(Turma.class).list();
             if (!transaction.wasCommitted()) {
                 transaction.commit();
             }
