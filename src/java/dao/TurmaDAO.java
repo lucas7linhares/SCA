@@ -4,6 +4,7 @@ import util.HibernateUtil;
 import java.sql.SQLException;
 import java.util.List;
 import model.Turma;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -84,7 +85,7 @@ public class TurmaDAO {
         try {
             Transaction transaction = session.beginTransaction();
             tx = session.getTransaction();
-            turmas = session.createQuery("from Turma").list();
+            turmas = session.createQuery("from turma").list();
             if (!transaction.wasCommitted()) {
                 transaction.commit();
             }

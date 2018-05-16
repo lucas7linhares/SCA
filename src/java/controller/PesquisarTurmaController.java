@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,24 +18,22 @@ public class PesquisarTurmaController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             request.setAttribute("turmas", Turma.obterTurmas());
             request.setAttribute("disciplinas", Disciplina.obterDisciplinas());
             request.setAttribute("cursos", Curso.obterCursos());
-            RequestDispatcher janela = request.getRequestDispatcher("/pesquisarTurma.jsp");
-            janela.forward(request, response);
+            RequestDispatcher view = request.getRequestDispatcher("/pesquisarTurma.jsp");
+            view.forward(request, response);
         } catch (ClassNotFoundException e) {
             throw new ServletException(e);
         } catch (SQLException e) {
             throw new ServletException(e);
         }
-    }    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -48,8 +47,7 @@ public class PesquisarTurmaController extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
