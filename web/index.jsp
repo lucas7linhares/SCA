@@ -23,11 +23,11 @@
         <a href="PesquisarNotaFrequenciaController?acao=prepararOperacao"> Manter Nota e Frequência</a> <br />
         <a href=""> Calcular Resultado de Rendimento do Aluno</a> <br />
         --- Relatórios ---<br/>
-        <a href="ReatorioCursosController?acao=prepararOperacao">Relatório de Cursos</a></br>
+        <a href="RelatorioCursosController?acao=prepararOperacao">Relatório de Cursos</a></br>
         <a href="RelatorioProfessorController?acao=prepararOperacao">Relatório de Professores Por Titulação</a></br>
         <a href="RelatorioDisciplinaPorCursoController?acao=prepararOperacao">Relatório de Disciplina Por Cursos</a></br>
         <a href="RelatorioAlunoAnoSemestreController?acao=prepararOperacao">Relatório de Aluno Ano/Semestre</a></br>
         <a href="RelatorioDiarioDeClasseController?acao=prepararOperacao">Diário de Classe</a></br>
-        <a href="ReatorioHistoricoAlunoController?acao=prepararOperacao">Historico</a></br>
+        <a href="RelatorioHistoricoAlunoController?acao=prepararOperacao">Historico</a></br>
     </body>
 </html>

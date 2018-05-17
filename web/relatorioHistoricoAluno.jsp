@@ -9,12 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Emtir Histórico</title>
+        <title>Emitir Histórico</title>
     </head>
     <body>
-        <h1>Emtir Histórico</h1>
+        <h1>Emitir Histórico</h1>
         
-        <form action="ReatorioHistoricoAlunoController?acao=confirmarOperacao" method="post">
+        <form action="RelatorioHistoricoAlunoController?acao=confirmarOperacao" method="post">
             Digite a matricula do aluno:<input type="text" name="txtMatricula">
             <input type="submit" value="Emitir">
         </form>

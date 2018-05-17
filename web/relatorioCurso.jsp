@@ -9,12 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Emtir Relatório Curso</title>
+        <title>Emitir Relatório Curso</title>
     </head>
     <body>
-        <h1>Emtir Relatório Curso</h1>
+        <h1>Emitir Relatório Curso</h1>
         
-        <form action="ReatorioCursosController?acao=confirmarOperacao" method="post">
+        <form action="RelatorioCursosController?acao=confirmarOperacao" method="post">
             Digite o Código do curso:<input type="text" name="txtCodCurso">
             <input type="submit" value="Emitir">
         </form>
