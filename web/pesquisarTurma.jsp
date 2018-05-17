@@ -5,11 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Documento sem título</title>
+        <title>Pesquisar turma</title>
     </head>
     <body>
         <h1>PESQUISAR TURMA</h1>
-        <form>
+        <form action="PesquisarTurmaController">
             <table>
                 <tr>
                     <td>Curso:</td>
@@ -41,7 +41,7 @@
                          </select>
                     </td>
                     <td>Nome da Disciplina:</td><td><input type="text" nome="txtDisciplina"></td>
-                    <td><input type="button" value="Pesquisar"></td>
+                    <td><input type="submit" name="pesquisar" value="Pesquisar"></td>
                 </tr>
             </table>
         </form>
