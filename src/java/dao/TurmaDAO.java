@@ -4,7 +4,6 @@ import util.HibernateUtil;
 import java.sql.SQLException;
 import java.util.List;
 import model.Turma;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
