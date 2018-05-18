@@ -40,7 +40,7 @@
                            
                          </select>
                     </td>
-                    <td>Nome da Disciplina:</td><td><input type="text" nome="txtDisciplina"></td>
+                    <td>Nome da Disciplina:</td><td><input type="text" name="txtDisciplina"></td>
                     <td><input type="submit" name="pesquisar" value="Pesquisar"></td>
                 </tr>
             </table>
