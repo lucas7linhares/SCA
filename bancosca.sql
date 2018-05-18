@@ -55,7 +55,7 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (3,'3','2013-03-04','3',3,'3','3','3','3','3','3','3','3',3,1,'Matriculado',3,3),(6,'6','2013-03-04','6',6,'6','6','6','6','6','6','6','6',6,1,'Matriculado',6,4);
+INSERT INTO `aluno` VALUES (3,'João','2013-03-04','3',3,'3','3','3','3','3','3','3','3',3,1,'Matriculado',3,3),(6,'José','2013-03-04','6',6,'6','6','6','6','6','6','6','6',6,1,'Matriculado',6,4);
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `curso` (
 
 LOCK TABLES `curso` WRITE;
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-INSERT INTO `curso` VALUES (1,'Bacharelado em Sistemas de Informacao',3090,'superior',8,1),(3,'Engenharia Mecatronica',3200,'superior',10,NULL),(4,'Tecnico em Informatica',1200,'tecnicoConcomitante',4,NULL);
+INSERT INTO `curso` VALUES (1,'Bacharelado em Sistemas de Informacao',3090,'superior',8,1),(3,'Engenharia Mecatronica',3200,'superior',10,NULL),(4,'Tecnico Informatica',1200,'tecnicoIntegrado',4,NULL),(10,'Tecnologo Eventos',10,'tecnicoIntegrado',10,4),(21,'Gerencia de Projetos',21,'mestrado',21,6),(22,'Psicologia',22,'superior',22,5),(23,'Administracao',23,'superior',23,1),(24,'Tecnico Redes',24,'tecnicoIntegrado',24,5),(25,'Tecnico contabilidade',25,'tecnicoIntegrado',25,4),(26,'Tecnico dev web',26,'tecnicoIntegrado',26,6),(99,'Direito',360,'superior',9,7);
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +146,7 @@ CREATE TABLE `disciplina` (
 
 LOCK TABLES `disciplina` WRITE;
 /*!40000 ALTER TABLE `disciplina` DISABLE KEYS */;
-INSERT INTO `disciplina` VALUES (30,'Algoritmos','Linguagem de programação e lógica',1,4,99);
+INSERT INTO `disciplina` VALUES (3,'3','3213213213',1,3,4),(4,'4','44444',1,4,3),(20,'2','2',2,2,21),(22,'2','222222',2,2,21),(30,'Algoritmos','assadsadsa',1,4,99);
 /*!40000 ALTER TABLE `disciplina` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'Marco Antônio','1111-11-11','Rua A',10,'A','Fábrica','10101-010','Juiz de Fora','Minas Gerais','marco@antonio.com','1111-01-11','Graduação',1),(7,'Sandro Fernandes','2013-06-11','3',3,'3','3','3','3','3','3','2013-06-11','Graduação',1);
+INSERT INTO `professor` VALUES (1,'Marco Antonio','1111-11-11','Rua A',10,'A','Fabrica','10101-010','Juiz de Fora','Minas Gerais','marco@antonio.com','1111-01-11','graduacao',1),(4,'Lovisi','2013-03-01','4',5,'4','4','4','4','4','4','2013-03-01','graduacao',NULL),(5,'Welington','1000-11-10','5',5,'5','5','5','5','GO','55','1001-11-10','doutorado',1),(6,'Tatiane','2013-06-11','6',6,'66','6','6','6','mg','6','2013-06-11','graduacao',3),(7,'Sandro Fernandes','2013-06-11','3',3,'3','3','3','3','3','3','2013-06-11','graduacao',1),(9,'Alberto','2013-06-17','9',9,'9','9','9','9','9','9','2013-06-17','graduacao',4),(12,'Manoel','2013-06-24','1',1,'1','1','1','1','1','1','2013-06-24','graduacao',21),(321321321,'Jose','1991-09-26','ewqeqw',212,'eqwe','ewqewq','weqewq',NULL,'AM','ewqwqewqe','1991-09-26','doutorado',99);
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 
