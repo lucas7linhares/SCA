@@ -98,4 +98,40 @@ public class TurmaDAO {
             return turmas;
         }
     }
+    
+    public static List<Turma> buscarTurmas(String codCurso, String ano, String semestre, String disciplina) throws ClassNotFoundException, SQLException {
+        Transaction tx = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Turma> turmas = null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            tx = session.getTransaction();
+            String sql = "";
+            if (!codCurso.equals("0")) {
+                sql += " codCurso="+codCurso+" and";
+            }
+            if (!ano.equals("0")) {
+                sql += " ano="+ano+" and";
+            }
+            if (!semestre.equals("0")) {
+                sql += " semestre="+semestre+" and";
+            }
+            if (!disciplina.equals("")) {
+                sql += " d.nome like '%"+disciplina+"%' and";
+            }
+            sql = sql.substring(0, (sql.length()-3));
+            turmas = session.createQuery("from Turma where "+sql).list();
+            if (!transaction.wasCommitted()) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return turmas;
+        }
+    }
 }

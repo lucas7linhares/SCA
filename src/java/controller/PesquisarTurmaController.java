@@ -17,8 +17,16 @@ public class PesquisarTurmaController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            request.setAttribute("turmas", Turma.obterTurmas());
-            request.setAttribute("disciplinas", Disciplina.obterDisciplinas());
+            String filtro = request.getParameter("filtro");
+            if (filtro != null) {
+                String codCurso = request.getParameter("optCurso");
+                String ano = request.getParameter("optAno");
+                String semestre = request.getParameter("optSemestre");
+                String disciplina = request.getParameter("txtDisciplina");
+                request.setAttribute("turmas", Turma.buscarTurmas(codCurso, ano, semestre, disciplina));
+            } else {
+                request.setAttribute("turmas", Turma.obterTurmas());
+            }
             request.setAttribute("cursos", Curso.obterCursos());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarTurma.jsp");
             view.forward(request, response);

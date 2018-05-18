@@ -159,4 +159,8 @@ public class Turma implements java.io.Serializable {
     public void excluir() throws ClassNotFoundException, SQLException {
         TurmaDAO.excluir(this);
     }
+    
+    public static List<Turma> buscarTurmas(String codCurso, String ano, String semestre, String disciplina) throws ClassNotFoundException, SQLException {
+        return TurmaDAO.buscarTurmas(codCurso, ano, semestre, disciplina);
+    }
 }
