@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>PESQUISAR TURMA</h1>
-        <form action="PesquisarTurmaController">
+        <form action="PesquisarTurmaController?filtro=1" method="post">
             <table>
                 <tr>
                     <td>Curso:</td>
