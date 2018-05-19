@@ -55,7 +55,7 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (3,'João','2013-03-04','3',3,'3','3','3','3','3','3','3','3',3,1,'Matriculado',3,3),(6,'José','2013-03-04','6',6,'6','6','6','6','6','6','6','6',6,1,'Matriculado',6,4);
+INSERT INTO `aluno` VALUES (3,'João','2013-03-04','3',3,'3','3','3','3','AP','3','3','3',3,1,'Matriculado',3,3),(6,'José','2013-03-04','6',6,'6','6','6','6','CE','6','6','6',6,1,'Matriculado',6,4);
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
