@@ -4,6 +4,7 @@ import util.HibernateUtil;
 import java.sql.SQLException;
 import java.util.List;
 import model.Turma;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -84,7 +85,9 @@ public class TurmaDAO {
         try {
             Transaction transaction = session.beginTransaction();
             tx = session.getTransaction();
-            turmas = session.createCriteria(Turma.class).list();
+            Criteria crit = session.createCriteria(Turma.class);
+            crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+            turmas = crit.list();
             if (!transaction.wasCommitted()) {
                 transaction.commit();
             }
@@ -120,7 +123,9 @@ public class TurmaDAO {
                 sql += " d.nome like '%"+disciplina+"%' and";
             }
             if (sql.length() == 0) {
-                turmas = session.createCriteria(Turma.class).list();
+                Criteria crit = session.createCriteria(Turma.class);
+                crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+                turmas = crit.list();
             } else {
                 sql = sql.substring(0, (sql.length()-3));
                 turmas = session.createQuery("from Turma where "+sql).list();
