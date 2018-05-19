@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Curso;
-import model.Disciplina;
 import model.Turma;
 
 public class PesquisarTurmaController extends HttpServlet {
@@ -27,6 +26,8 @@ public class PesquisarTurmaController extends HttpServlet {
             } else {
                 request.setAttribute("turmas", Turma.obterTurmas());
             }
+            request.setAttribute("anos", Turma.buscarAnos());
+            request.setAttribute("semestres", Turma.buscarSemestres());
             request.setAttribute("cursos", Curso.obterCursos());
             RequestDispatcher view = request.getRequestDispatcher("/pesquisarTurma.jsp");
             view.forward(request, response);

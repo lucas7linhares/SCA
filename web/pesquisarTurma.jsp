@@ -25,19 +25,18 @@
                     <td>
                         <select name="optAno">
                             <option value="0" selected>Todos</option>
-                            <option value="2013" selected>2013</option>
-                            <option value="2012" selected>2012</option>
-                            <option value="2011" selected>2011</option>
-                            <option value="2010" selected>2010</option>
+                            <c:forEach items="${anos}" var="ano">
+                                <option value="${ano}">${ano}</option>
+                            </c:forEach>
                          </select>
                     </td>
                     <td>Semestre:</td>
                     <td>
                         <select name="optSemestre">
                             <option value="0" selected>Todos</option>
-                            <option value="1" selected>1</option>
-                            <option value="2" selected>2</option>
-                           
+                            <c:forEach items="${semestres}" var="semestre">
+                                <option value="${semestre}">${semestre}</option>
+                            </c:forEach>
                          </select>
                     </td>
                     <td>Nome da Disciplina:</td><td><input type="text" name="txtDisciplina"></td>

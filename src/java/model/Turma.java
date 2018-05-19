@@ -163,4 +163,12 @@ public class Turma implements java.io.Serializable {
     public static List<Turma> buscarTurmas(String codCurso, String ano, String semestre, String disciplina) throws ClassNotFoundException, SQLException {
         return TurmaDAO.buscarTurmas(codCurso, ano, semestre, disciplina);
     }
+    
+    public static List<String> buscarAnos() throws ClassNotFoundException, SQLException {
+        return TurmaDAO.buscarAnos();
+    }
+    
+    public static List<String> buscarSemestres() throws ClassNotFoundException, SQLException {
+        return TurmaDAO.buscarSemestres();
+    }
 }
