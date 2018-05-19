@@ -120,7 +120,7 @@ public class TurmaDAO {
                 sql += " semestre=" + semestre + " and";
             }
             if (!disciplina.equals("")) {
-                sql += " d.nome like '%" + disciplina + "%' and";
+                //sql += " d.nome like '%" + disciplina + "%' and";
             }
             if (sql.length() == 0) {
                 Criteria crit = session.createCriteria(Turma.class);
@@ -165,7 +165,7 @@ public class TurmaDAO {
             return anos;
         }
     }
-    
+
     public static List<String> buscarSemestres() throws ClassNotFoundException, SQLException {
         Transaction tx = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
