@@ -104,6 +104,10 @@
         <servlet-name>ManterAlunoNotaFrequenciaController</servlet-name>
         <servlet-class>controller.ManterAlunoNotaFrequenciaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginSistema</servlet-name>
+        <servlet-class>controller.LoginSistema</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ManterCursoController</servlet-name>
         <url-pattern>/ManterCursoController</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>ManterAlunoNotaFrequenciaController</servlet-name>
         <url-pattern>/ManterAlunoNotaFrequenciaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginSistema</servlet-name>
+        <url-pattern>/LoginSistema</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

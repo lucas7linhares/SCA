@@ -9,25 +9,45 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Menu</title>
+        <title>Login</title>
     </head>
+    <style>
+        .position-vertical-center {
+            height: 500px;
+            -webkit-height: 500px;
+            display: flex;
+            display: -webkit-flex;
+            align-items: center;
+            -webkit-align-items: center;
+        }
+
+        .position-center {
+            width: 100%;
+            -webkit-width: 100%;
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            -webkit-justify-content: center;
+        }
+    </style>
+
     <body>
-        <a href="PesquisarCursoController">Manter Cursos</a> </br>
-        <a href="PesquisarDisciplinaController?filtro=0">Manter Disciplinas</a> </br>
-        <a href="PesquisarProfessorController">Manter Professores</a> </br>
-        <a href="PesquisarAlunoController">Manter Alunos</a> </br>
-        <a href="PesquisarTurmaController">Manter Turmas</a><br/>
-        ---<br/>
-        <a href="PesquisarMatrizCurricularController?acao=prepararOperacao">Consultar Matriz Curricular</a> <br />
-        <a href="PesquisarProfessorPorCursoController?acao=prepararOperacao"> Consultar Professores Vinculados a cada Curso</a> <br />
-        <a href="PesquisarNotaFrequenciaController?acao=prepararOperacao"> Manter Nota e Frequência</a> <br />
-        <a href=""> Calcular Resultado de Rendimento do Aluno</a> <br />
-        --- Relatórios ---<br/>
-        <a href="RelatorioCursosController?acao=prepararOperacao">Relatório de Cursos</a></br>
-        <a href="RelatorioProfessorController?acao=prepararOperacao">Relatório de Professores Por Titulação</a></br>
-        <a href="RelatorioDisciplinaPorCursoController?acao=prepararOperacao">Relatório de Disciplina Por Cursos</a></br>
-        <a href="RelatorioAlunoAnoSemestreController?acao=prepararOperacao">Relatório de Aluno Ano/Semestre</a></br>
-        <a href="RelatorioDiarioDeClasseController?acao=prepararOperacao">Diário de Classe</a></br>
-        <a href="RelatorioHistoricoAlunoController?acao=prepararOperacao">Historico</a></br>
+        <div class="block">
+            <div class="position-vertical-center">
+                <div class="position-center">
+                    <center>
+                        <h1>SCA</h1>
+                        <b>Selecione perfil:</b>
+                        <form method="post" action="LoginSistema">
+                            <input type="radio" name="perfil" value="professor"/> Professor
+                            <input type="radio" name="perfil" value="secretaria"/> Secretária
+                            <input type="radio" name="perfil" value="aluno"/> Aluno
+                            <br><br>
+                            <button type="submit" name="acao" value="entrar">Entrar</button>
+                        </form>
+                    </center>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
