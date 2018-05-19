@@ -119,8 +119,12 @@ public class TurmaDAO {
             if (!disciplina.equals("")) {
                 sql += " d.nome like '%"+disciplina+"%' and";
             }
-            sql = sql.substring(0, (sql.length()-3));
-            turmas = session.createQuery("from Turma where "+sql).list();
+            if (sql.length() == 0) {
+                turmas = session.createCriteria(Turma.class).list();
+            } else {
+                sql = sql.substring(0, (sql.length()-3));
+                turmas = session.createQuery("from Turma where "+sql).list();
+            }
             if (!transaction.wasCommitted()) {
                 transaction.commit();
             }
