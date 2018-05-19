@@ -43,6 +43,7 @@ CREATE TABLE `aluno` (
   `status` varchar(25) DEFAULT NULL,
   `posicaoVestibular` int(11) DEFAULT NULL,
   `codCurso` int(11) NOT NULL,
+  `codTurma` int(11) DEFAULT NULL,
   PRIMARY KEY (`matricula`),
   KEY `fk_Aluno_Curso_idx` (`codCurso`),
   CONSTRAINT `fk_Aluno_Curso` FOREIGN KEY (`codCurso`) REFERENCES `curso` (`codCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -55,7 +56,7 @@ CREATE TABLE `aluno` (
 
 LOCK TABLES `aluno` WRITE;
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (3,'João','2013-03-04','3',3,'3','3','3','3','3','3','3','3',3,1,'Matriculado',3,3),(6,'José','2013-03-04','6',6,'6','6','6','6','6','6','6','6',6,1,'Matriculado',6,4);
+INSERT INTO `aluno` VALUES (3,'João','2013-03-04','3',3,'3','3','3','3','AP','3','3','3',3,1,'Matriculado',3,3,1),(6,'José','2013-03-04','6',6,'6','6','6','6','CE','6','6','6',6,1,'Matriculado',6,4,3);
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,6 +258,7 @@ CREATE TABLE `turma` (
   `numSala` varchar(25) DEFAULT NULL,
   `codDisciplina` int(11) NOT NULL,
   `matriculaProfessor` int(11) NOT NULL,
+  `codCurso` int(11) DEFAULT NULL,
   PRIMARY KEY (`codTurma`),
   KEY `fk_Turma_Disciplina1_idx` (`codDisciplina`),
   KEY `fk_Turma_Professor1_idx` (`matriculaProfessor`),
@@ -271,7 +273,7 @@ CREATE TABLE `turma` (
 
 LOCK TABLES `turma` WRITE;
 /*!40000 ALTER TABLE `turma` DISABLE KEYS */;
-INSERT INTO `turma` VALUES (1,1,2010,34,'f3',20,4),(2,2,2010,3,'3',22,5),(3,2,2012,1,'1',20,4),(4,1,2010,32,'',4,7),(5,2,2010,36,'5',30,321321321);
+INSERT INTO `turma` VALUES (1,1,2010,34,'f3',20,4,3),(2,2,2010,3,'3',22,5,1),(3,2,2012,1,'1',20,4,1),(4,1,2010,32,'',4,7,1),(5,2,2010,36,'5',30,321321321,3);
 /*!40000 ALTER TABLE `turma` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
