@@ -58,6 +58,7 @@ public class ManterAlunoNotaFrequenciaController extends HttpServlet {
         int matricula = Integer.parseInt(request.getParameter("txtMatricula"));
         float nota1 = 0;
         float nota2 = 0;
+        float nota3 = 0;
         int numFaltas = 0;
         float notaProvaFinal = 0;
         if(!request.getParameter("txtNota1").equals("")){
@@ -66,6 +67,10 @@ public class ManterAlunoNotaFrequenciaController extends HttpServlet {
         
         if(!request.getParameter("txtNota2").equals("")){
             nota2 = Float.parseFloat(request.getParameter("txtNota2"));
+        }
+        
+        if(!request.getParameter("txtNota3").equals("")){
+            nota3 = Float.parseFloat(request.getParameter("txtNota3"));
         }
         
         if(!request.getParameter("txtNumFaltas").equals("")){
@@ -83,6 +88,7 @@ public class ManterAlunoNotaFrequenciaController extends HttpServlet {
         try {
             avaliacao.setNota1(nota1);
             avaliacao.setNota2(nota2);
+            avaliacao.setNota3(nota3);
             avaliacao.setNumFaltas(numFaltas);
             avaliacao.setNotaProvaFinal(notaProvaFinal);
             avaliacao.alterar();

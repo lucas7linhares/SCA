@@ -72,6 +72,7 @@ CREATE TABLE `avaliacao` (
   `codTurma` int(11) NOT NULL,
   `nota1` float DEFAULT NULL,
   `nota2` float DEFAULT NULL,
+  `nota3` float DEFAULT NULL,
   `numFaltas` int(11) DEFAULT NULL,
   `notaProvaFinal` float DEFAULT NULL,
   PRIMARY KEY (`matriculaAluno`,`codTurma`),
@@ -87,7 +88,7 @@ CREATE TABLE `avaliacao` (
 
 LOCK TABLES `avaliacao` WRITE;
 /*!40000 ALTER TABLE `avaliacao` DISABLE KEYS */;
-INSERT INTO `avaliacao` VALUES (6,4,NULL,NULL,NULL,NULL),(6,5,NULL,NULL,NULL,NULL);
+INSERT INTO `avaliacao` VALUES (6,4,NULL,NULL,NULL,NULL,NULL),(6,5,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `avaliacao` ENABLE KEYS */;
 UNLOCK TABLES;
 
