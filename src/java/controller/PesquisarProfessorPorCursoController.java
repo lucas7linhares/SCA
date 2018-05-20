@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Curso;
-import model.Disciplina;
 import model.Professor;
 
 public class PesquisarProfessorPorCursoController extends HttpServlet {
