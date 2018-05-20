@@ -48,6 +48,14 @@
                         <select name="optSemestre" <c:if test="${operacao == 'Excluir'}"> readonly</c:if>>
                             <option value="1" <c:if test="${turma.semestre == 1}"> selected </c:if>>1</option>
                             <option value="2" <c:if test="${turma.semestre == 2}"> selected</c:if>>2</option>
+                            <option value="3" <c:if test="${turma.semestre == 3}"> selected</c:if>>3</option>
+                            <option value="4" <c:if test="${turma.semestre == 4}"> selected</c:if>>4</option>
+                            <option value="5" <c:if test="${turma.semestre == 5}"> selected</c:if>>5</option>
+                            <option value="6" <c:if test="${turma.semestre == 6}"> selected</c:if>>6</option>
+                            <option value="7" <c:if test="${turma.semestre == 7}"> selected</c:if>>7</option>
+                            <option value="8" <c:if test="${turma.semestre == 8}"> selected</c:if>>8</option>
+                            <option value="9" <c:if test="${turma.semestre == 9}"> selected</c:if>>9</option>
+                            <option value="10" <c:if test="${turma.semestre == 10}"> selected</c:if>>10</option>
                         </select>
                     </td>
                 </tr>
